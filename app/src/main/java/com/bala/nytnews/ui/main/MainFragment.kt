@@ -1,30 +1,62 @@
 package com.bala.nytnews.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bala.nytnews.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bala.nytnews.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
-    companion object {
+    /*companion object {
         fun newInstance() = MainFragment()
+    }*/
+
+    private val viewModel: MainViewModel by viewModels()
+
+    private val newsListAdapter by lazy { NewsListAdapter(requireContext()) }
+
+    private val viewBinding
+        get() = _viewBinding!!
+    private var _viewBinding: MainFragmentBinding? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _viewBinding = MainFragmentBinding.inflate(inflater)
+        return viewBinding.root
     }
 
-    private lateinit var viewModel: MainViewModel
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.makeNetworkRequest()
+        init()
+        initObservers()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun init() {
+        viewBinding.newsList.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        viewBinding.newsList.adapter = newsListAdapter
+    }
+
+    private fun initObservers() {
+        viewModel.newsItems.observe(viewLifecycleOwner) { lNewsItems ->
+            newsListAdapter.submitList(lNewsItems)
+            lNewsItems?.forEach { lNewsItem ->
+                Log.d("balatag", lNewsItem.toString())
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
     }
 
 }
