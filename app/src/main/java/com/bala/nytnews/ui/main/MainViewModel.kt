@@ -29,7 +29,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             { response ->
                 val lJsonArray = JSONObject(response).getJSONObject("response").getJSONArray("docs")
                 val lNewsItems = _newsItems.value
-                for (i in 0 until /*lJsonArray.length()*/2) {
+                for (i in 0 until lJsonArray.length()) {
                     val lJsonObject = lJsonArray.getJSONObject(i)
                     val lNewsItem = NewsItemJsonParser.parseNewsItem(lJsonObject)
                     lNewsItems?.add(lNewsItem)

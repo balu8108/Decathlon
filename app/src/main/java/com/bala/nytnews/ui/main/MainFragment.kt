@@ -1,24 +1,25 @@
 package com.bala.nytnews.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
+import com.bala.nytnews.R
 import com.bala.nytnews.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
-    /*companion object {
-        fun newInstance() = MainFragment()
-    }*/
-
     private val viewModel: MainViewModel by viewModels()
 
-    private val newsListAdapter by lazy { NewsListAdapter(requireContext()) }
+    private val newsListAdapter by lazy {
+        NewsListAdapter(requireContext()) { url ->
+            findNavController().navigate(R.id.webViewFragment, bundleOf("url" to url))
+        }
+    }
 
     private val viewBinding
         get() = _viewBinding!!
@@ -40,17 +41,19 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
-        viewBinding.newsList.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         viewBinding.newsList.adapter = newsListAdapter
     }
 
     private fun initObservers() {
         viewModel.newsItems.observe(viewLifecycleOwner) { lNewsItems ->
-            newsListAdapter.submitList(lNewsItems)
-            lNewsItems?.forEach { lNewsItem ->
-                Log.d("balatag", lNewsItem.toString())
+            if (lNewsItems.size > 0) {
+                newsListAdapter.submitList(lNewsItems)
             }
+            /*val code = 8217
+            lNewsItems?.forEach { lNewsItem ->
+                Log.d("balatag", '\''.toString())
+                Log.d("balatag", lNewsItem.title[5].toString())
+            }*/
         }
     }
 

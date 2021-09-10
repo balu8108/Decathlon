@@ -9,5 +9,22 @@
         android:id="@+id/mainFragment"
         android:name="com.bala.nytnews.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.bala.nytnews.ui.webView.WebViewFragment"
+        android:label="WebViewFragment">
+        <argument
+            android:name="webUrl"
+            android:defaultValue='""'
+            app:argType="string" />
+    </fragment>
 </navigation>

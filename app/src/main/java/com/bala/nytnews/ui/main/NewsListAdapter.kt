@@ -10,16 +10,16 @@ import com.bala.nytnews.databinding.NewsItemLayoutBinding
 import com.bala.nytnews.ui.main.data.NewsItem
 import com.bumptech.glide.Glide
 
-class NewsListAdapter(private val context: Context) :
+class NewsListAdapter(private val context: Context, val listener: (String) -> Unit) :
     ListAdapter<NewsItem, NewsListAdapter.NewsItemViewHolder>(DiffCallBackNewsItems()) {
 
     inner class NewsItemViewHolder(val viewBinding: NewsItemLayoutBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
-        /*init {
-            viewBinding.root.setOnClickListener {
-
+        init {
+            viewBinding.newItemContainer.setOnClickListener {
+                listener(getItem(adapterPosition).webUrl)
             }
-        }*/
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsItemViewHolder {
@@ -33,25 +33,25 @@ class NewsListAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: NewsItemViewHolder, position: Int) {
-        /*holder.viewBinding.apply {
+        holder.viewBinding.apply {
             val lNewsItem = getItem(position)
             holder.viewBinding.apply {
-                *//*Glide.with(context)
+                Glide.with(context)
                     .load(lNewsItem.imageUrl)
                     .into(titleImage)
                 title.text = lNewsItem.title
                 snippet.text = lNewsItem.snippet
-                date.text = lNewsItem.date*//*
+                date.text = lNewsItem.date
             }
-        }*/
+        }
     }
 
 
     class DiffCallBackNewsItems : DiffUtil.ItemCallback<NewsItem>() {
-        override fun areItemsTheSame(oldItem: NewsItem, newItem: NewsItem) = false
-        /*oldItem.title == newItem.title*/
+        override fun areItemsTheSame(oldItem: NewsItem, newItem: NewsItem) =
+            oldItem.title == newItem.title
 
-        override fun areContentsTheSame(oldItem: NewsItem, newItem: NewsItem) = false
-        /*oldItem.title == newItem.title*/
+        override fun areContentsTheSame(oldItem: NewsItem, newItem: NewsItem) =
+            oldItem.title == newItem.title
     }
 }
