@@ -5,15 +5,17 @@ import org.json.JSONObject
 
 object NewsItemJsonParser {
 
-    const val curlyApostropheCode = 8217
-
     fun parseNewsItem(jsonObject: JSONObject): NewsItem {
-        val lTitle = jsonObject.getJSONObject("headline").getString("main")/*.replace(
-            curlyApostropheCode.toChar(), '\''
-        )*/
-        val lSnippet = jsonObject.getString("abstract")/*.replace(
-            curlyApostropheCode.toChar(), '\''
-        )*/
+        val lTitle = jsonObject.getJSONObject("headline").getString("main").replace(
+            "â\u0080\u0099", "'", true
+        ).replace(
+            "â\u0080\u0098", "'", true
+        )
+        val lSnippet = jsonObject.getString("abstract").replace(
+            "â\u0080\u0099", "'", true
+        ).replace(
+            "â\u0080\u0098", "'", true
+        )
         val lDate = jsonObject.getString("pub_date").slice(0 until 10)
         var lImageUrl = ""
         if (jsonObject.getJSONArray("multimedia").length() > 0)

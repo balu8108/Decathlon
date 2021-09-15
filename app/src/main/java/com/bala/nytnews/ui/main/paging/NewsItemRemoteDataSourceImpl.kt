@@ -7,7 +7,7 @@ import com.bala.nytnews.ui.main.data.NewsItem
 import kotlinx.coroutines.flow.Flow
 
 object NewsItemRemoteDataSourceImpl {
-    private const val NETWORK_PAGE_SIZE = 1
+    private const val NETWORK_PAGE_SIZE = 3
 
     fun getNewsItems(): Flow<PagingData<NewsItem>> {
         return Pager(
