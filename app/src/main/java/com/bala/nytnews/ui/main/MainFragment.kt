@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bala.nytnews.R
 import com.bala.nytnews.databinding.MainFragmentBinding
 import com.bala.nytnews.ui.main.adapters.LoaderStateAdapter
@@ -19,11 +20,7 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
 
-    private val newsListAdapter by lazy {
-        NewsListAdapter(requireContext()) { url ->
-            findNavController().navigate(R.id.webViewFragment, bundleOf("url" to url))
-        }
-    }
+    private lateinit var newsListAdapter: NewsListAdapter
 
     private val viewBinding
         get() = _viewBinding!!
@@ -44,6 +41,11 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
+        viewModel.setIsGrid(true)
+        newsListAdapter = NewsListAdapter(requireContext(),viewModel.getIsGrid()) { url ->
+            findNavController().navigate(R.id.webViewFragment, bundleOf("url" to url))
+        }
+        viewBinding.newsList.layoutManager = GridLayoutManager(context,2)
         viewBinding.newsList.adapter = newsListAdapter.withLoadStateFooter(LoaderStateAdapter{})
     }
 
