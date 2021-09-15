@@ -16,7 +16,7 @@ object ApiService {
 
     private val requestQueue by lazy {
         Volley.newRequestQueue(
-            NytApplication.context,
+            NytApplication.application,
             HurlStack()
         )
     }

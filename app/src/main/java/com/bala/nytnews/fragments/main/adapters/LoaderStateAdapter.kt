@@ -25,7 +25,6 @@ class LoaderStateAdapter(private val retry: () -> Unit) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         companion object {
-            //get instance of the DoggoImageViewHolder
             fun getInstance(parent: ViewGroup, retry: () -> Unit): LoaderViewHolder {
                 return LoaderViewHolder(
                     NewsItemLoaderBinding.inflate(

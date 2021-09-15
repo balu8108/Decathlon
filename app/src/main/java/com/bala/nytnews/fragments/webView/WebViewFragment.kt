@@ -31,11 +31,15 @@ class WebViewFragment : Fragment() {
 
         viewBinding.webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                view?.loadUrl(url)
+                if (url != null) {
+                    view?.loadUrl(url)
+                }
                 return true
             }
         }
-        viewBinding.webView.loadUrl(lUrl)
+        if (lUrl != null) {
+            viewBinding.webView.loadUrl(lUrl)
+        }
         viewBinding.toolBar.setNavigationOnClickListener {
             activity?.onBackPressedDispatcher?.onBackPressed()
         }

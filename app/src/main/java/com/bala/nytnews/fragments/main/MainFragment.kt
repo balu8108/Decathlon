@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bala.nytnews.R
@@ -36,6 +37,7 @@ class MainFragment : Fragment() {
         return viewBinding.root
     }
 
+    @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
@@ -58,6 +60,7 @@ class MainFragment : Fragment() {
         }
     }
 
+    @ExperimentalPagingApi
     private fun initObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getNewsItems().collectLatest { lNewsItems ->

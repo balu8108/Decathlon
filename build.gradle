@@ -3,6 +3,7 @@ buildscript {
     ext.kotlin_version = "1.5.20"
     ext{
         paging_version = "3.0.1"
+        room_version = "2.3.0"
     }
     repositories {
         google()
