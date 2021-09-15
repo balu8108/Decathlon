@@ -9,8 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimary">#6200EE</color>
-    <color name="pressed_state">#42000000</color>
-    <color name="cards_container_background">#eeeeee</color>
 
     <color name="black_87">#DE000000</color>
 </resources>
