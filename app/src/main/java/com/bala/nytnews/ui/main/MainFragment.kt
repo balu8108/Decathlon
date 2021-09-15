@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bala.nytnews.R
 import com.bala.nytnews.databinding.MainFragmentBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 
@@ -35,7 +38,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.makeNetworkRequest()
         init()
         initObservers()
     }
@@ -45,15 +47,10 @@ class MainFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.newsItems.observe(viewLifecycleOwner) { lNewsItems ->
-            if (lNewsItems.size > 0) {
-                newsListAdapter.submitList(lNewsItems)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getNewsItems().collectLatest { lNewsItems ->
+                newsListAdapter.submitData(lNewsItems)
             }
-            /*val code = 8217
-            lNewsItems?.forEach { lNewsItem ->
-                Log.d("balatag", '\''.toString())
-                Log.d("balatag", lNewsItem.title[5].toString())
-            }*/
         }
     }
 

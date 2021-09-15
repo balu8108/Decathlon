@@ -15,9 +15,11 @@ object NewsItemJsonParser {
             curlyApostropheCode.toChar(), '\''
         )*/
         val lDate = jsonObject.getString("pub_date").slice(0 until 10)
-        val lImageUrl =
-            "https://www.nytimes.com/" + jsonObject.getJSONArray("multimedia").getJSONObject(0)
-                .getString("url")
+        var lImageUrl = ""
+        if (jsonObject.getJSONArray("multimedia").length() > 0)
+            lImageUrl =
+                "https://www.nytimes.com/" + jsonObject.getJSONArray("multimedia").getJSONObject(0)
+                    .getString("url")
         val lWebUrl = jsonObject.getString("web_url")
 
         return NewsItem(lTitle, lSnippet, lDate, lImageUrl, lWebUrl)
