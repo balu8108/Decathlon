@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadStateAdapter
+import androidx.paging.flatMap
 import com.bala.nytnews.R
 import com.bala.nytnews.databinding.MainFragmentBinding
+import com.bala.nytnews.ui.main.adapters.LoaderStateAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -43,7 +46,7 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
-        viewBinding.newsList.adapter = newsListAdapter
+        viewBinding.newsList.adapter = newsListAdapter.withLoadStateFooter(LoaderStateAdapter{})
     }
 
     private fun initObservers() {
