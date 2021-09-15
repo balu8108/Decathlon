@@ -27,7 +27,7 @@ class WebViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.webView.settings.setJavaScriptEnabled(true)
 
-        val url = arguments?.getString("url")
+        val lUrl = arguments?.getString("url")
 
         viewBinding.webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -35,7 +35,10 @@ class WebViewFragment : Fragment() {
                 return true
             }
         }
-        viewBinding.webView.loadUrl(url)
+        viewBinding.webView.loadUrl(lUrl)
+        viewBinding.toolBar.setNavigationOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
     }
 
 }
