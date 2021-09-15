@@ -17,8 +17,7 @@ class NewsListAdapter(
     private val context: Context,
     private val isGrid: LiveData<Boolean>,
     val listener: (String) -> Unit
-) :
-    PagingDataAdapter<NewsItem, RecyclerView.ViewHolder>(DiffCallBackNewsItems()) {
+) : PagingDataAdapter<NewsItem, RecyclerView.ViewHolder>(DiffCallBackNewsItems()) {
 
     inner class NewsItemViewHolder(val viewBinding: NewsItemLayoutBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
