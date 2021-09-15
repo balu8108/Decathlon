@@ -3,7 +3,6 @@ package com.bala.nytnews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bala.nytnews.databinding.MainActivityBinding
-import com.bala.nytnews.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

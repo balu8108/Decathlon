@@ -1,4 +1,4 @@
-package com.bala.nytnews.ui.main.apiservice
+package com.bala.nytnews.fragments.main.apiservice
 
 import android.util.Log
 import com.android.volley.Request
@@ -6,8 +6,8 @@ import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bala.nytnews.NytApplication
-import com.bala.nytnews.ui.main.data.NewsItem
-import com.bala.nytnews.ui.main.utils.NewsItemJsonParser
+import com.bala.nytnews.fragments.main.data.NewsItem
+import com.bala.nytnews.fragments.main.utils.NewsItemJsonParser
 import org.json.JSONObject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

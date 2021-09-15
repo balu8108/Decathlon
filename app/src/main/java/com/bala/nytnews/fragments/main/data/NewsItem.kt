@@ -1,4 +1,4 @@
-package com.bala.nytnews.ui.main.data
+package com.bala.nytnews.fragments.main.data
 
 data class NewsItem(
     val title: String,

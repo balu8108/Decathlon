@@ -1,4 +1,4 @@
-package com.bala.nytnews.ui.webView
+package com.bala.nytnews.fragments.webView
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.bala.nytnews.ui.main
+package com.bala.nytnews.fragments.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bala.nytnews.R
 import com.bala.nytnews.databinding.MainFragmentBinding
-import com.bala.nytnews.ui.main.adapters.LoaderStateAdapter
-import com.bala.nytnews.ui.main.adapters.NewsListAdapter
+import com.bala.nytnews.fragments.main.adapters.LoaderStateAdapter
+import com.bala.nytnews.fragments.main.adapters.NewsListAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

@@ -1,6 +1,6 @@
-package com.bala.nytnews.ui.main.utils
+package com.bala.nytnews.fragments.main.utils
 
-import com.bala.nytnews.ui.main.data.NewsItem
+import com.bala.nytnews.fragments.main.data.NewsItem
 import org.json.JSONObject
 
 object NewsItemJsonParser {

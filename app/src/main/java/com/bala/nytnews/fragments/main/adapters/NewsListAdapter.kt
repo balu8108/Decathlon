@@ -1,16 +1,15 @@
-package com.bala.nytnews.ui.main.adapters
+package com.bala.nytnews.fragments.main.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bala.nytnews.R
 import com.bala.nytnews.databinding.NewsItemLayoutBinding
-import com.bala.nytnews.ui.main.data.NewsItem
+import com.bala.nytnews.fragments.main.data.NewsItem
 import com.bumptech.glide.Glide
 
 class NewsListAdapter(

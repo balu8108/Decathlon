@@ -1,9 +1,9 @@
-package com.bala.nytnews.ui.main.paging
+package com.bala.nytnews.fragments.main.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.bala.nytnews.ui.main.apiservice.ApiService
-import com.bala.nytnews.ui.main.data.NewsItem
+import com.bala.nytnews.fragments.main.apiservice.ApiService
+import com.bala.nytnews.fragments.main.data.NewsItem
 import com.bumptech.glide.load.HttpException
 import java.io.IOException
 

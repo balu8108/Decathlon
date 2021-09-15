@@ -1,4 +1,4 @@
-package com.bala.nytnews.ui.main.adapters
+package com.bala.nytnews.fragments.main.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

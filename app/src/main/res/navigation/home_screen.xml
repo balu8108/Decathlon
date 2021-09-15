@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.bala.nytnews.ui.main.MainFragment"
+        android:name="com.bala.nytnews.fragments.main.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="com.bala.nytnews.ui.webView.WebViewFragment"
+        android:name="com.bala.nytnews.fragments.webView.WebViewFragment"
         android:label="WebViewFragment">
         <argument
             android:name="webUrl"

@@ -1,9 +1,9 @@
-package com.bala.nytnews.ui.main.paging
+package com.bala.nytnews.fragments.main.paging
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.bala.nytnews.ui.main.data.NewsItem
+import com.bala.nytnews.fragments.main.data.NewsItem
 import kotlinx.coroutines.flow.Flow
 
 object NewsItemRemoteDataSourceImpl {

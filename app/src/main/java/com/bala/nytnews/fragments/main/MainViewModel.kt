@@ -1,12 +1,12 @@
-package com.bala.nytnews.ui.main
+package com.bala.nytnews.fragments.main
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.bala.nytnews.ui.main.data.NewsItem
-import com.bala.nytnews.ui.main.paging.NewsItemRemoteDataSourceImpl
+import com.bala.nytnews.fragments.main.data.NewsItem
+import com.bala.nytnews.fragments.main.paging.NewsItemRemoteDataSourceImpl
 import kotlinx.coroutines.flow.Flow
 
 class MainViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
