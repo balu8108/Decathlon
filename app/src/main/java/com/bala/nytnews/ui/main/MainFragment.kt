@@ -47,7 +47,7 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
-        viewBinding.newsList.adapter = newsListAdapter.withLoadStateHeaderAndFooter(LoaderStateAdapter{},LoaderStateAdapter{})
+        viewBinding.newsList.adapter = newsListAdapter.withLoadStateFooter(LoaderStateAdapter{})
     }
 
     private fun initObservers() {
