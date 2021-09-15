@@ -1,20 +1,21 @@
-package com.bala.nytnews.ui.main
+package com.bala.nytnews.ui.main.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bala.nytnews.R
-import com.bala.nytnews.databinding.NewsItemGridLayoutBinding
 import com.bala.nytnews.databinding.NewsItemLayoutBinding
 import com.bala.nytnews.ui.main.data.NewsItem
 import com.bumptech.glide.Glide
 
 class NewsListAdapter(
     private val context: Context,
-    private val isGrid: Boolean,
+    private val isGrid: LiveData<Boolean>,
     val listener: (String) -> Unit
 ) :
     PagingDataAdapter<NewsItem, RecyclerView.ViewHolder>(DiffCallBackNewsItems()) {
@@ -28,25 +29,7 @@ class NewsListAdapter(
         }
     }
 
-    inner class NewsItemGridViewHolder(val viewBinding: NewsItemGridLayoutBinding) :
-        RecyclerView.ViewHolder(viewBinding.root) {
-        init {
-            viewBinding.newItemContainer.setOnClickListener {
-                getItem(bindingAdapterPosition)?.let { lNewsItem -> listener(lNewsItem.webUrl) }
-            }
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (isGrid) {
-            return NewsItemGridViewHolder(
-                NewsItemGridLayoutBinding.inflate(
-                    LayoutInflater.from(context),
-                    parent,
-                    false
-                )
-            )
-        }
         return NewsItemViewHolder(
             NewsItemLayoutBinding.inflate(
                 LayoutInflater.from(context),
@@ -57,8 +40,10 @@ class NewsListAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is NewsItemViewHolder) {
+        if (holder is NewsItemViewHolder && isGrid.value == true) {
             holder.viewBinding.apply {
+                contentRight.isVisible = false
+                content.isVisible = true
                 val lNewsItem = getItem(position)
                 lNewsItem?.let {
                     holder.viewBinding.apply {
@@ -73,8 +58,10 @@ class NewsListAdapter(
                 }
 
             }
-        } else if (holder is NewsItemGridViewHolder) {
+        } else if (holder is NewsItemViewHolder) {
             holder.viewBinding.apply {
+                contentRight.isVisible = true
+                content.isVisible = false
                 val lNewsItem = getItem(position)
                 lNewsItem?.let {
                     holder.viewBinding.apply {
@@ -82,9 +69,9 @@ class NewsListAdapter(
                             .load(lNewsItem.imageUrl)
                             .placeholder(R.drawable.news_item_place_holder)
                             .into(titleImage)
-                        title.text = lNewsItem.title
-                        snippet.text = lNewsItem.snippet
-                        date.text = lNewsItem.date
+                        titleRight.text = lNewsItem.title
+                        snippetRight.text = lNewsItem.snippet
+                        dateRight.text = lNewsItem.date
                     }
                 }
 

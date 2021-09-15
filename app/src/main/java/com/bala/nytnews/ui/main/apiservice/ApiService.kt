@@ -1,5 +1,6 @@
 package com.bala.nytnews.ui.main.apiservice
 
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.StringRequest
@@ -41,6 +42,8 @@ object ApiService {
             {
                 // Handle error
             })
+
+        Log.d("balauri", "getNewsItemsInPage: ${lNewsItemRequest.url}")
 
         requestQueue.add(lNewsItemRequest)
     }

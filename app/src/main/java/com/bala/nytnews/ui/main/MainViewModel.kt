@@ -11,19 +11,16 @@ import kotlinx.coroutines.flow.Flow
 
 class MainViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
 
+    val isGrid
+        get() = savedStateHandle.getLiveData(KEY_IS_GRID, false)
+
+
     fun getNewsItems(): Flow<PagingData<NewsItem>> {
         return NewsItemRemoteDataSourceImpl.getNewsItems().cachedIn(viewModelScope)
     }
 
     fun setIsGrid(isGrid: Boolean) {
         savedStateHandle.set(KEY_IS_GRID, isGrid)
-    }
-
-    fun getIsGrid(): Boolean {
-
-        savedStateHandle.get<Boolean>(KEY_IS_GRID)?.let { return it }
-
-        return false
     }
 
     companion object {

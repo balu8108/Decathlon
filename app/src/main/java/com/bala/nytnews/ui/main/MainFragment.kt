@@ -10,9 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bala.nytnews.R
 import com.bala.nytnews.databinding.MainFragmentBinding
 import com.bala.nytnews.ui.main.adapters.LoaderStateAdapter
+import com.bala.nytnews.ui.main.adapters.NewsListAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -41,12 +43,19 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
-        viewModel.setIsGrid(true)
-        newsListAdapter = NewsListAdapter(requireContext(),viewModel.getIsGrid()) { url ->
+        newsListAdapter = NewsListAdapter(requireContext(), viewModel.isGrid) { url ->
             findNavController().navigate(R.id.webViewFragment, bundleOf("url" to url))
         }
-        viewBinding.newsList.layoutManager = GridLayoutManager(context,2)
-        viewBinding.newsList.adapter = newsListAdapter.withLoadStateFooter(LoaderStateAdapter{})
+        viewBinding.newsList.adapter = newsListAdapter.withLoadStateFooter(LoaderStateAdapter {})
+        viewBinding.toolBar.setOnMenuItemClickListener { lMenuItem ->
+            if (viewModel.isGrid.value == true) {
+                lMenuItem.setIcon(R.drawable.grid)
+            } else {
+                lMenuItem.setIcon(R.drawable.hamburger)
+            }
+            viewModel.setIsGrid(!(viewModel.isGrid.value ?: true))
+            true
+        }
     }
 
     private fun initObservers() {
@@ -55,6 +64,17 @@ class MainFragment : Fragment() {
                 newsListAdapter.submitData(lNewsItems)
             }
         }
+
+        viewModel.isGrid.observe(viewLifecycleOwner, { isGrid ->
+            if (isGrid) {
+                viewBinding.newsList.layoutManager = GridLayoutManager(context, 2)
+            } else {
+                viewBinding.newsList.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            }
+            newsListAdapter.notifyDataSetChanged()
+        })
+
     }
 
     override fun onDestroyView() {
