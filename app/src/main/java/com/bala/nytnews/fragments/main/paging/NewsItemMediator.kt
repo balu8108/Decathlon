@@ -7,17 +7,17 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.bala.nytnews.AppDatabase
 import com.bala.nytnews.fragments.main.apiservice.ApiService
-import com.bala.nytnews.fragments.main.data.NewsItem
+import com.bala.nytnews.fragments.main.data.DecathlonProduct
 import com.bala.nytnews.fragments.main.data.RemoteKeys
 import java.io.IOException
 
 
 @ExperimentalPagingApi
 class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getInstance()) :
-    RemoteMediator<Int, NewsItem>() {
+    RemoteMediator<Int, DecathlonProduct>() {
 
     override suspend fun load(
-        loadType: LoadType, state: PagingState<Int, NewsItem>
+        loadType: LoadType, state: PagingState<Int, DecathlonProduct>
     ): MediatorResult {
 
         val lPage = when (val lPageKeyData = getKeyPageData(loadType, state)) {
@@ -55,7 +55,7 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
     /**
      * this returns the page key or the final end of list success result
      */
-    private suspend fun getKeyPageData(loadType: LoadType, state: PagingState<Int, NewsItem>): Any? {
+    private suspend fun getKeyPageData(loadType: LoadType, state: PagingState<Int, DecathlonProduct>): Any? {
         return when (loadType) {
             LoadType.REFRESH -> {
                 val lRemoteKeys = getClosestRemoteKey(state)
@@ -79,7 +79,7 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
     /**
      * get the last remote key inserted which had the data
      */
-    private suspend fun getLastRemoteKey(state: PagingState<Int, NewsItem>): RemoteKeys? {
+    private suspend fun getLastRemoteKey(state: PagingState<Int, DecathlonProduct>): RemoteKeys? {
         return state.pages
             .lastOrNull { it.data.isNotEmpty() }
             ?.data?.lastOrNull()
@@ -89,7 +89,7 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
     /**
      * get the first remote key inserted which had the data
      */
-    private suspend fun getFirstRemoteKey(state: PagingState<Int, NewsItem>): RemoteKeys? {
+    private suspend fun getFirstRemoteKey(state: PagingState<Int, DecathlonProduct>): RemoteKeys? {
         return state.pages
             .firstOrNull() { it.data.isNotEmpty() }
             ?.data?.firstOrNull()
@@ -100,7 +100,7 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
     /**
      * get the closest remote key inserted which had the data
      */
-    private suspend fun getClosestRemoteKey(state: PagingState<Int, NewsItem>): RemoteKeys? {
+    private suspend fun getClosestRemoteKey(state: PagingState<Int, DecathlonProduct>): RemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { repoId ->
                 appDatabase.getRepoDao().remoteKeysNewsItemId(repoId)

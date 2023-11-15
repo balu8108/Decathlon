@@ -3,20 +3,20 @@ package com.bala.nytnews.fragments.main.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.bala.nytnews.fragments.main.apiservice.ApiService
-import com.bala.nytnews.fragments.main.data.NewsItem
+import com.bala.nytnews.fragments.main.data.DecathlonProduct
 import com.bumptech.glide.load.HttpException
 import java.io.IOException
 
-class NewsItemDataSource : PagingSource<Int, NewsItem>() {
+class NewsItemDataSource : PagingSource<Int, DecathlonProduct>() {
 
-    override fun getRefreshKey(state: PagingState<Int, NewsItem>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, DecathlonProduct>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, NewsItem> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DecathlonProduct> {
         val lPageIndex = params.key ?: NEWS_ITEM_FIRST_PAGE
         return try {
             val lNewsItems = ApiService.getNewsItemsInPage(lPageIndex)

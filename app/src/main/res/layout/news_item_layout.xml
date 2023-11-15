@@ -37,73 +37,12 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/news_item_place_holder"
+                    android:src="@drawable/decathlon_sample_image"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/content_right"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/title_image_container"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/title_right"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="hello"
-                    android:textColor="@color/black_87"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toTopOf="@+id/snippet_right"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0"
-                    app:layout_constraintVertical_chainStyle="spread" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/snippet_right"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="hello"
-                    android:textColor="@color/black_87"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/date_right"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title_right"
-                    app:layout_constraintVertical_bias="0.5" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/date_right"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:lines="1"
-                    android:text="hello"
-                    android:textColor="@color/black_87"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/snippet_right"
-                    app:layout_constraintVertical_bias="1" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@id/title_image_container">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/title"
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -126,7 +65,8 @@
                     android:maxLines="2"
                     android:textColor="@color/black_87"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toTopOf="@+id/snippet"
+                    android:text="xddhnnjj"
+                    app:layout_constraintBottom_toTopOf="@+id/price"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -134,32 +74,33 @@
                     app:layout_constraintVertical_chainStyle="spread" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/snippet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:textColor="@color/black_87"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/date"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/date"
+                    android:id="@+id/brand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lines="1"
                     android:textColor="@color/black_87"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="dncjdcmdmkd"
+                    app:layout_constraintBottom_toTopOf="@id/price"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/snippet" />
+                    app:layout_constraintTop_toBottomOf="@+id/name" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="shsjxsjxs"
+                    android:textColor="@color/black_87"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/brand" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

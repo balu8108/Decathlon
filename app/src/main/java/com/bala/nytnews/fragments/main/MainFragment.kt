@@ -45,9 +45,8 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
-        newsListAdapter = NewsListAdapter(requireContext(), viewModel.isGrid) { url ->
-            findNavController().navigate(R.id.webViewFragment, bundleOf("url" to url))
-        }
+        newsListAdapter = NewsListAdapter(requireContext())
+        viewBinding.newsList.layoutManager = GridLayoutManager(context, 2)
         viewBinding.newsList.adapter = newsListAdapter.withLoadStateFooter(LoaderStateAdapter {})
         viewBinding.toolBar.setOnMenuItemClickListener { lMenuItem ->
             if (viewModel.isGrid.value == true) {
@@ -68,7 +67,9 @@ class MainFragment : Fragment() {
             }
         }
 
-        viewModel.isGrid.observe(viewLifecycleOwner, { isGrid ->
+
+
+        /*viewModel.isGrid.observe(viewLifecycleOwner) { isGrid ->
             if (isGrid) {
                 viewBinding.newsList.layoutManager = GridLayoutManager(context, 2)
             } else {
@@ -76,7 +77,7 @@ class MainFragment : Fragment() {
                     LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             }
             newsListAdapter.notifyDataSetChanged()
-        })
+        }*/
 
     }
 

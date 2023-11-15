@@ -9,11 +9,11 @@ import androidx.room.Query
 @Dao
 interface NewsItemDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(newsItems: List<NewsItem>)
+    suspend fun insertAll(decathlonProducts: List<DecathlonProduct>)
 
-    @Query("SELECT * FROM newsitem")
-    fun getAllNewsItems(): PagingSource<Int, NewsItem>
+    @Query("SELECT * FROM decathlonproduct")
+    fun getAllNewsItems(): PagingSource<Int, DecathlonProduct>
 
-    @Query("DELETE FROM newsitem")
+    @Query("DELETE FROM decathlonproduct")
     suspend fun clearAllNewsItems()
 }

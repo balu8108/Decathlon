@@ -20,7 +20,7 @@ class NewsItemRepository {
     }
 
 
-    fun letNewsItemsFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<NewsItem>> {
+    fun letNewsItemsFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<DecathlonProduct>> {
         return Pager(
             config = pagingConfig,
             pagingSourceFactory = { NewsItemDataSource() }
@@ -28,7 +28,7 @@ class NewsItemRepository {
     }
 
 
-    fun letNewsItemsLiveData(pagingConfig: PagingConfig = getDefaultPageConfig()): LiveData<PagingData<NewsItem>> {
+    fun letNewsItemsLiveData(pagingConfig: PagingConfig = getDefaultPageConfig()): LiveData<PagingData<DecathlonProduct>> {
         return Pager(
             config = pagingConfig,
             pagingSourceFactory = { NewsItemDataSource() }
@@ -40,7 +40,7 @@ class NewsItemRepository {
         return PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true)
     }
 
-    fun letNewsItemsDb(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<NewsItem>> {
+    fun letNewsItemsDb(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<DecathlonProduct>> {
 
         val lPagingSourceConfig = { AppDatabase.getInstance().getNewsItemDao().getAllNewsItems() }
         return Pager(
