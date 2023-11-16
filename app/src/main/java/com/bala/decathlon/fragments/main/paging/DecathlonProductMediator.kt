@@ -1,19 +1,19 @@
-package com.bala.nytnews.fragments.main.paging
+package com.bala.decathlon.fragments.main.paging
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.bala.nytnews.AppDatabase
-import com.bala.nytnews.fragments.main.apiservice.ApiService
-import com.bala.nytnews.fragments.main.data.DecathlonProduct
-import com.bala.nytnews.fragments.main.data.RemoteKeys
+import com.bala.decathlon.AppDatabase
+import com.bala.decathlon.fragments.main.apiservice.ApiService
+import com.bala.decathlon.fragments.main.data.DecathlonProduct
+import com.bala.decathlon.fragments.main.data.RemoteKeys
 import java.io.IOException
 
 
 @ExperimentalPagingApi
-class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getInstance()) :
+class DecathlonProductMediator(private val appDatabase: AppDatabase = AppDatabase.getInstance()) :
     RemoteMediator<Int, DecathlonProduct>() {
 
     override suspend fun load(
@@ -30,13 +30,13 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
         }
 
         try {
-            val lResponse = ApiService.getNewsItemsInPage(lPage)
+            val lResponse = ApiService.getDecathlonProductsInPage(lPage)
             val lIsEndOfList = lResponse.isEmpty()
             appDatabase.withTransaction {
                 // clear all tables in the database
                 if (loadType == LoadType.REFRESH) {
                     appDatabase.getRepoDao().clearRemoteKeys()
-                    appDatabase.getNewsItemDao().clearAllNewsItems()
+                    appDatabase.getDecathlonProductDao().clearAllDecathlonProducts()
                 }
                 val lPrevKey = if (lPage == DEFAULT_PAGE_INDEX) null else lPage - 1
                 val lNextKey = if (lIsEndOfList) null else lPage + 1
@@ -44,7 +44,7 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
                     RemoteKeys(repoId = it.id, prevKey = lPrevKey, nextKey = lNextKey)
                 }
                 appDatabase.getRepoDao().insertAll(lKeys)
-                appDatabase.getNewsItemDao().insertAll(lResponse)
+                appDatabase.getDecathlonProductDao().insertAll(lResponse)
             }
             return MediatorResult.Success(endOfPaginationReached = lIsEndOfList)
         } catch (exception: IOException) {
@@ -83,7 +83,7 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
         return state.pages
             .lastOrNull { it.data.isNotEmpty() }
             ?.data?.lastOrNull()
-            ?.let { lNewsItem -> appDatabase.getRepoDao().remoteKeysNewsItemId(lNewsItem.id) }
+            ?.let { lDecathlonProduct -> appDatabase.getRepoDao().remoteKeysDecathlonProductId(lDecathlonProduct.id) }
     }
 
     /**
@@ -93,8 +93,8 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
         return state.pages
             .firstOrNull() { it.data.isNotEmpty() }
             ?.data?.firstOrNull()
-            ?.let { lNewsItem ->
-                appDatabase.getRepoDao().remoteKeysNewsItemId(lNewsItem.id) }
+            ?.let { lDecathlonProduct ->
+                appDatabase.getRepoDao().remoteKeysDecathlonProductId(lDecathlonProduct.id) }
     }
 
     /**
@@ -103,7 +103,7 @@ class NewsItemMediator(private val appDatabase: AppDatabase = AppDatabase.getIns
     private suspend fun getClosestRemoteKey(state: PagingState<Int, DecathlonProduct>): RemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { repoId ->
-                appDatabase.getRepoDao().remoteKeysNewsItemId(repoId)
+                appDatabase.getRepoDao().remoteKeysDecathlonProductId(repoId)
             }
         }
     }

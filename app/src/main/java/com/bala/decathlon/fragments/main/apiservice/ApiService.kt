@@ -1,22 +1,22 @@
-package com.bala.nytnews.fragments.main.apiservice
+package com.bala.decathlon.fragments.main.apiservice
 
 import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.Volley
-import com.bala.nytnews.NytApplication
-import com.bala.nytnews.fragments.main.data.DecathlonProduct
-import com.bala.nytnews.fragments.main.data.SampleDecathlonProducts
+import com.bala.decathlon.DecathlonProductApplication
+import com.bala.decathlon.fragments.main.data.DecathlonProduct
+import com.bala.decathlon.fragments.main.data.SampleDecathlonProducts
 import kotlinx.coroutines.delay
 
 object ApiService {
 
     private val requestQueue by lazy {
         Volley.newRequestQueue(
-            NytApplication.application,
+            DecathlonProductApplication.application,
             HurlStack()
         )
     }
 
-    suspend fun getNewsItemsInPage(
+    suspend fun getDecathlonProductsInPage(
         page: Int
     ): List<DecathlonProduct>  {
         delay(1000)

@@ -1,8 +1,8 @@
-package com.bala.nytnews
+package com.bala.decathlon
 
 import android.app.Application
 
-class NytApplication : Application() {
+class DecathlonProductApplication : Application() {
 
     override fun onCreate() {
         application = this

@@ -1,4 +1,4 @@
-package com.bala.nytnews.fragments.main.data
+package com.bala.decathlon.fragments.main.data
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -12,7 +12,7 @@ interface RemoteKeysDao {
     suspend fun insertAll(remoteKey: List<RemoteKeys>)
 
     @Query("SELECT * FROM remotekeys WHERE repoId = :id")
-    suspend fun remoteKeysNewsItemId(id: Int): RemoteKeys?
+    suspend fun remoteKeysDecathlonProductId(id: Int): RemoteKeys?
 
     @Query("DELETE FROM remotekeys")
     suspend fun clearRemoteKeys()

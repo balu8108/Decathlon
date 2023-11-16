@@ -1,4 +1,4 @@
-package com.bala.nytnews
+package com.bala.decathlon
 
 import org.junit.Test
 

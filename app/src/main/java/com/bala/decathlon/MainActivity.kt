@@ -1,8 +1,8 @@
-package com.bala.nytnews
+package com.bala.decathlon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bala.nytnews.databinding.MainActivityBinding
+import com.bala.decathlon.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
 

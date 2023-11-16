@@ -1,4 +1,4 @@
-package com.bala.nytnews.fragments.main.data
+package com.bala.decathlon.fragments.main.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

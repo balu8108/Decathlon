@@ -1,28 +1,24 @@
-package com.bala.nytnews.fragments.main.adapters
+package com.bala.decathlon.fragments.main.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.lifecycle.LiveData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bala.nytnews.R
-import com.bala.nytnews.databinding.NewsItemLayoutBinding
-import com.bala.nytnews.fragments.main.data.DecathlonProduct
-import com.bumptech.glide.Glide
+import com.bala.decathlon.databinding.DecathlonProductLayoutBinding
+import com.bala.decathlon.fragments.main.data.DecathlonProduct
 
-class NewsListAdapter(
+class DecathlonProductAdapter(
     private val context: Context
-) : PagingDataAdapter<DecathlonProduct, RecyclerView.ViewHolder>(DiffCallBackNewsItems()) {
+) : PagingDataAdapter<DecathlonProduct, RecyclerView.ViewHolder>(DiffCallBackDecathlonProducts()) {
 
-    inner class NewsItemViewHolder(val viewBinding: NewsItemLayoutBinding) :
+    inner class DecathlonProductViewHolder(val viewBinding: DecathlonProductLayoutBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return NewsItemViewHolder(
-            NewsItemLayoutBinding.inflate(
+        return DecathlonProductViewHolder(
+            DecathlonProductLayoutBinding.inflate(
                 LayoutInflater.from(context),
                 parent,
                 false
@@ -31,18 +27,18 @@ class NewsListAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is NewsItemViewHolder) {
+        if (holder is DecathlonProductViewHolder) {
             holder.viewBinding.apply {
-                val lNewsItem = getItem(position)
-                lNewsItem?.let {
+                val lDecathlonProduct = getItem(position)
+                lDecathlonProduct?.let {
                     holder.viewBinding.apply {
                         /*Glide.with(context)
                             .load(lNewsItem.imageUrl)
                             .placeholder(R.drawable.news_item_place_holder)
                             .into(titleImage)*/
-                        name.text = lNewsItem.name
-                        price.text = "₹ "+lNewsItem.price
-                        brand.text = lNewsItem.brand
+                        name.text = lDecathlonProduct.name
+                        price.text = "₹ "+lDecathlonProduct.price
+                        brand.text = lDecathlonProduct.brand
                     }
                 }
 
@@ -51,7 +47,7 @@ class NewsListAdapter(
     }
 
 
-    class DiffCallBackNewsItems : DiffUtil.ItemCallback<DecathlonProduct>() {
+    class DiffCallBackDecathlonProducts : DiffUtil.ItemCallback<DecathlonProduct>() {
         override fun areItemsTheSame(oldItem: DecathlonProduct, newItem: DecathlonProduct) =
             oldItem.id == newItem.id
 

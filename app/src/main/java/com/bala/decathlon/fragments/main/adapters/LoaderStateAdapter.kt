@@ -1,11 +1,11 @@
-package com.bala.nytnews.fragments.main.adapters
+package com.bala.decathlon.fragments.main.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bala.nytnews.databinding.NewsItemLoaderBinding
+import com.bala.decathlon.databinding.DecathlonProductLoaderBinding
 
 class LoaderStateAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<LoaderStateAdapter.LoaderViewHolder>() {
@@ -21,13 +21,13 @@ class LoaderStateAdapter(private val retry: () -> Unit) :
     /**
      * view holder class for footer loader and error state handling
      */
-    class LoaderViewHolder(private val viewBinding: NewsItemLoaderBinding, retry: () -> Unit) :
+    class LoaderViewHolder(private val viewBinding: DecathlonProductLoaderBinding, retry: () -> Unit) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         companion object {
             fun getInstance(parent: ViewGroup, retry: () -> Unit): LoaderViewHolder {
                 return LoaderViewHolder(
-                    NewsItemLoaderBinding.inflate(
+                    DecathlonProductLoaderBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
